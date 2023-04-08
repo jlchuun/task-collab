@@ -81,8 +81,8 @@ const SignUp = () => {
 
                     <button type="submit">Sign Up</button>
                 </form>
-                <NavLink to="/">
-                    <a href="#">Already have an account? Login here.</a>
+                <NavLink className={styles.link} to="/">
+                    Already have an account? Login here.
                 </NavLink>
             </div>
         </div>
