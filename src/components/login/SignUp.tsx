@@ -78,10 +78,10 @@ const SignUp = () => {
                         {...register("confirmPassword")}
                     />
 
-                    <button type="submit">Sign In</button>
+                    <button type="submit">Sign Up</button>
                 </form>
                 <NavLink to="/">
-                    <a href="#">Sign In Here</a>
+                    <a href="#">Already have an account? Login here.</a>
                 </NavLink>
             </div>
         </div>

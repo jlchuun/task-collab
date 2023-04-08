@@ -1,56 +1,72 @@
 import styles from "./Login.module.scss";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signinSchema } from "../../validationSchema";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 const SignIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const onSubmit = async (e: any) => {
-        e.preventDefault();
-        setEmail("");
-        setPassword("");
-        await signInWithEmailAndPassword(auth, email, password)
+    const [error, setError] = useState("");
+    const {
+        register,
+        handleSubmit,
+        reset,
+        setFocus,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(signinSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
+
+    // login existing user in firebase
+    const handleSignin = async (values: any): Promise<void> => {
+        setFocus("email");
+        reset();
+        await signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
                 navigate("/");
             })
             .catch((err) => {
-                const errCode = err.code;
-                const errMsg = err.message;
-                console.log(errCode, errMsg);
+                setError(err.message);
             });
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
-                <form>
+                {error ? <p className={styles.alert}>{error}</p> : ""}
+                <form onSubmit={handleSubmit(handleSignin)}>
+                    {errors.email && (
+                        <p className={styles.alert}>{errors.email?.message}</p>
+                    )}
                     <input
-                        type="email"
                         placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
+                        autoComplete="off"
+                        {...register("email")}
                     />
+                    {errors.password && (
+                        <p className={styles.alert}>
+                            {errors.password?.message}
+                        </p>
+                    )}
                     <input
-                        type="password"
                         placeholder="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
+                        type="password"
+                        {...register("password")}
                     />
-                    <button type="submit" onClick={onSubmit}>
-                        Sign In
-                    </button>
+                    <button type="submit">Sign In</button>
                 </form>
                 <NavLink to="/signup">
-                    <a href="#">Sign Up Here</a>
+                    <a href="#">Don't have an account? Register here</a>
                 </NavLink>
             </div>
         </div>
