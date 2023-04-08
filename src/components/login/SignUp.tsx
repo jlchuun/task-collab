@@ -5,6 +5,7 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const SignUp = () => {
     const {
@@ -23,6 +24,7 @@ const SignUp = () => {
     });
 
     const navigate = useNavigate();
+    const [error, setError] = useState("");
 
     // creates new user in firebase
     const handleSignup = async (values: any): Promise<void> => {
@@ -39,15 +41,14 @@ const SignUp = () => {
                 navigate("/");
             })
             .catch((err) => {
-                const errCode = err.code;
-                const errMsg = err.message;
-                console.log(errCode, errMsg);
+                setError(err.message);
             });
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
+                {error ? <p className={styles.alert}>{error}</p> : ""}
                 <form onSubmit={handleSubmit(handleSignup)}>
                     {errors.email && (
                         <p className={styles.alert}>{errors.email?.message}</p>
