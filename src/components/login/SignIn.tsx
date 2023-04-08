@@ -1,9 +1,9 @@
-import styles from "./SignIn.module.scss";
+import styles from "./Login.module.scss";
 
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const SignIn = () => {
     const [email, setEmail] = useState("");
@@ -49,7 +49,9 @@ const SignIn = () => {
                         Sign In
                     </button>
                 </form>
-                <a href="#">Register Here</a>
+                <NavLink to="/signup">
+                    <a href="#">Sign Up Here</a>
+                </NavLink>
             </div>
         </div>
     );
