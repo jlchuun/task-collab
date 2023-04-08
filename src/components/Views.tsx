@@ -9,7 +9,7 @@ import { AccountContext } from "./AccountContext";
 const Views = () => {
     const { currentUser } = useContext(AccountContext);
     return currentUser === null ? (
-        ""
+        <></>
     ) : (
         <Routes>
             <Route path="/login" element={<SignIn />} />
