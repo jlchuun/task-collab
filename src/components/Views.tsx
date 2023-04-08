@@ -1,15 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./login/SignIn";
-import SignUp from "./login/SignUp";
+import { Routes, Route } from "react-router-dom";
+import SignIn from "./Login/SignIn";
+import SignUp from "./Login/SignUp";
+import ProtectedRoute from "./ProtectedRoute";
+import Home from "./Home/Home";
+import { useContext } from "react";
+import { AccountContext } from "./AccountContext";
 
 const Views = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
-            </Routes>
-        </BrowserRouter>
+    const { currentUser } = useContext(AccountContext);
+    return currentUser === null ? (
+        ""
+    ) : (
+        <Routes>
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="*" element={<SignIn />} />
+            <Route element={<ProtectedRoute />}>
+                <Route path="/home" element={<Home />} />
+            </Route>
+        </Routes>
     );
 };
 

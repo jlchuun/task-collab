@@ -32,8 +32,7 @@ const SignIn = () => {
         await signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
-                navigate("/");
+                navigate("/home");
             })
             .catch((err) => {
                 setError(err.message);
@@ -65,7 +64,7 @@ const SignIn = () => {
                     />
                     <button type="submit">Sign In</button>
                 </form>
-                <NavLink className={styles.link} to="/signup">
+                <NavLink className={styles.link} to="/register">
                     Don't have an account? Register here
                 </NavLink>
             </div>
