@@ -32,7 +32,6 @@ const Home = () => {
 
     return (
         <div className={styles.container}>
-            <h1>Testing</h1>
             <Sidebar projects={projects} setTabIndex={setTabIndex} />
             <div className={styles.tabPanels}>
                 {projects

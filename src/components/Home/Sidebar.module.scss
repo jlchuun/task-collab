@@ -1,0 +1,44 @@
+.sidebar {
+    text-align: center;
+    height: 100dvh;
+    background: rgb(184, 184, 184);
+
+    h1 {
+        margin-bottom: 2rem;
+    }
+
+    button {
+        cursor: pointer;
+        background: none;
+        padding: 0;
+        border: none;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    li {
+        button {
+            padding: .5rem;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    
+    svg {
+        width: 2rem;
+        height: 2rem;
+        padding: 0 .6rem;
+    }
+
+    .logout {
+        margin-top: auto;
+    }
+}
