@@ -6,9 +6,9 @@ $hover-color: #474747;
     height: 100dvh;
     background: $background-color;
     color: $font-color;
-    padding: 1rem;
     h1 {
         margin-bottom: 2rem;
+        padding: 1rem;
     }
 
     button {
@@ -25,6 +25,13 @@ $hover-color: #474747;
         display: flex;
         flex-direction: column;
         height: 100%;
+    }
+
+    .projectList {
+        overflow-y: scroll;
+
+        scrollbar-width: thin;
+
     }
 
     li {
@@ -45,7 +52,7 @@ $hover-color: #474747;
     svg {
         width: 2rem;
         height: 2rem;
-        margin: .3rem;
+        margin: .5rem;
         fill: $font-color; 
     }
 

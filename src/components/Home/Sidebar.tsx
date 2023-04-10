@@ -17,23 +17,25 @@ const Sidebar: React.FC<SidebarProps> = ({ projects, setTabIndex }) => {
         <aside className={styles.sidebar}>
             <ul>
                 <h1>Task Manager</h1>
-                {projects.map((project, index) => (
-                    <li key={project.id} className={styles.project}>
-                        <button
-                            type="button"
-                            role="tab"
-                            onClick={() => setTabIndex(index)}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
+                <ul className={styles.projectList}>
+                    {projects.map((project, index) => (
+                        <li key={project.id} className={styles.project}>
+                            <button
+                                type="button"
+                                role="tab"
+                                onClick={() => setTabIndex(index)}
                             >
-                                <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" />
-                            </svg>
-                            <span>{project.title}</span>
-                        </button>
-                    </li>
-                ))}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                >
+                                    <path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                </svg>
+                                <span>{project.title}</span>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
                 <li className={styles.addProject}>
                     <CreateModal />
                 </li>
