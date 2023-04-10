@@ -1,8 +1,12 @@
 import styles from "./CreateModal.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { projectSchema } from "../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { db } from "../../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { Project } from "./Home";
+import { AccountContext } from "../AccountContext";
 
 interface FormProps {
     title: string;
@@ -11,6 +15,7 @@ interface FormProps {
 
 const CreateModal = () => {
     const [open, setOpen] = useState(false);
+    const { currentUser } = useContext(AccountContext);
 
     const {
         register,
@@ -29,7 +34,19 @@ const CreateModal = () => {
         setOpen(!open);
     };
 
-    const createProject = (values: FormProps): void => {};
+    const createProject = async (values: FormProps): Promise<void> => {
+        reset();
+        toggleModal();
+        if (currentUser) {
+            await addDoc(collection(db, "projects"), {
+                title: values.title,
+                description: values.description,
+                owner: currentUser.uid,
+                createdAt: Timestamp.now(),
+                users: [] as string[],
+            } as Project);
+        }
+    };
 
     return (
         <div>

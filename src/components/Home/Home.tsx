@@ -2,6 +2,7 @@ import styles from "./Home.module.scss";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 import useProjects from "./useProjects";
+import { Timestamp } from "firebase/firestore";
 
 export interface Project {
     id: string;
@@ -9,6 +10,7 @@ export interface Project {
     description: string;
     owner: string;
     users: string[] | null;
+    createdAt: Timestamp;
 }
 
 const Home = () => {
