@@ -5,13 +5,14 @@ $btn-color: #a772ec;
 $btn-hover: #9458e4;
 
 .modalContainer {
-    position: fixed;
-    top: 30%;
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background: $background-color;
-    width: 40%;
+    min-width: 35em;
+    max-width: 40%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     
     .header {

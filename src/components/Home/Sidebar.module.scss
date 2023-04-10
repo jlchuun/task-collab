@@ -6,7 +6,7 @@ $hover-color: #474747;
     height: 100dvh;
     background: $background-color;
     color: $font-color;
-
+    padding: 1rem;
     h1 {
         margin-bottom: 2rem;
     }
@@ -29,7 +29,6 @@ $hover-color: #474747;
 
     li {
         button {
-            margin-right: 1rem;
             padding: .5rem;
             display: flex;
             align-items: center;
