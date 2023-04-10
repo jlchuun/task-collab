@@ -3,14 +3,9 @@ import SignIn from "./Login/SignIn";
 import SignUp from "./Login/SignUp";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "./Home/Home";
-import { useContext } from "react";
-import { AccountContext } from "./AccountContext";
 
 const Views = () => {
-    const { currentUser } = useContext(AccountContext);
-    return currentUser === null ? (
-        <></>
-    ) : (
+    return (
         <Routes>
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />

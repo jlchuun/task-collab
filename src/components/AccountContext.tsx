@@ -17,8 +17,13 @@ const UserContext = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
+            console.log(user);
             setCurrentUser(user);
-            navigate("/home");
+            if (user) {
+                navigate("/home");
+            } else {
+                navigate("/login");
+            }
         });
 
         return () => {

@@ -1,12 +1,18 @@
 import styles from "./Sidebar.module.scss";
 import { Project } from "./Home";
 import CreateModal from "./CreateModal";
+import { auth } from "../../firebase";
+
 type SidebarProps = {
     projects: Array<Project>;
     setTabIndex: (index: number) => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ projects, setTabIndex }) => {
+    const handleLogout = () => {
+        auth.signOut();
+    };
+
     return (
         <aside className={styles.sidebar}>
             <ul>
@@ -31,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ projects, setTabIndex }) => {
                 <li className={styles.addProject}>
                     <CreateModal />
                 </li>
-                <li className={styles.logout}>
+                <li className={styles.logout} onClick={handleLogout}>
                     <button>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
