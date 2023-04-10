@@ -3,9 +3,67 @@
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
     z-index: 1000;
     background: white;
+    width: 40%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+
+        button {
+            margin-left: auto;
+        }
+    }
+
+    .alert {
+        color: #DC2626;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        padding: 1rem;
+        input {
+            padding: .3rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            height: 5em;
+        }
+
+        button {
+            cursor: pointer;
+            outline: 0;
+            color: #fff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            border: 1px solid transparent;
+            padding: 6px 12px;
+            font-size: 16px;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            
+            &:hover {
+                color: #fff;
+                background-color: #0b5ed7;
+                border-color: #0a58ca;
+            }
+        }
+    }
+
 }
 
 .modalOverlay {
@@ -18,8 +76,3 @@
     z-index: 999;
 }
 
-.closeBtn {
-    position: fixed;
-    top: 0;
-    right: 0;
-}
