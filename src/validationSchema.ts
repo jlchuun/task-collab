@@ -16,3 +16,7 @@ export const signinSchema = yup.object({
         password: yup.string().required("Password is required")
 }).required(); 
     
+export const projectSchema = yup.object({
+    title: yup.string().required("Title is required").max(20, "Title has to be less than 20 characters"),
+    description: yup.string().optional()
+});

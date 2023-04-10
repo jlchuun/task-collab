@@ -1,8 +1,19 @@
 import styles from "./CreateModal.module.scss";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { projectSchema } from "../../validationSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const CreateModal = () => {
     const [open, setOpen] = useState(false);
+
+    const { register, handleSubmit, reset } = useForm({
+        resolver: yupResolver(projectSchema),
+        defaultValues: {
+            title: "",
+            description: "",
+        },
+    });
 
     const toggleModal = () => {
         setOpen(!open);
@@ -20,18 +31,7 @@ const CreateModal = () => {
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContainer}>
                         <h2>Create a New Project</h2>
-                        <p>
-                            Dolore amet fugiat id ad et minim eu duis elit ad.
-                            Enim incididunt consequat nisi aute in in veniam.
-                            Occaecat adipisicing quis laborum ea sunt officia
-                            mollit elit et reprehenderit quis anim deserunt ad.
-                            Et tempor aliquip cillum tempor qui ipsum mollit ut
-                            nisi Lorem nostrud pariatur veniam. Ea minim magna
-                            aute ad excepteur dolor incididunt laborum.
-                            Excepteur amet aliqua quis ex voluptate est ipsum
-                            enim ullamco tempor officia consequat ullamco culpa.
-                            Est laborum cillum ad et quis sunt pariatur do.
-                        </p>
+                        <form></form>
                         <button
                             type="button"
                             onClick={toggleModal}
