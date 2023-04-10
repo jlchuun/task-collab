@@ -1,34 +1,20 @@
 import styles from "./Home.module.scss";
 import Sidebar from "./Sidebar";
-
 import { useState } from "react";
+import useProjects from "./useProjects";
 
 export interface Project {
-    id: number;
+    id: string;
     title: string;
     description: string;
+    owner: string;
+    users: string[] | null;
 }
 
 const Home = () => {
-    const projects: Array<Project> = [
-        {
-            id: 1,
-            title: "Starter Project",
-            description: "The first project for starters",
-        },
-        {
-            id: 2,
-            title: "Starter Project 2",
-            description: "The second project for starters",
-        },
-        {
-            id: 3,
-            title: "Starter Project 3",
-            description: "The third project for starters",
-        },
-    ];
-
+    const projects: Array<Project> = useProjects();
     const [tabIndex, setTabIndex] = useState(0);
+    useProjects();
 
     return (
         <div className={styles.container}>
