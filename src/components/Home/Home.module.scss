@@ -1,3 +1,7 @@
+$font-color: #F0F0F0;
+$background-color: #121212;
 .container {
     display: flex;
+    background-color: $background-color;
+    color: $font-color;
 }

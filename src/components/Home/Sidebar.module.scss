@@ -1,7 +1,11 @@
+$font-color: #F0F0F0;
+$background-color: #1C1C1C;
+$hover-color: #474747;
 .sidebar {
     text-align: center;
     height: 100dvh;
-    background: rgb(184, 184, 184);
+    background: $background-color;
+    color: $font-color;
 
     h1 {
         margin-bottom: 2rem;
@@ -25,9 +29,16 @@
 
     li {
         button {
+            margin-right: 1rem;
             padding: .5rem;
             display: flex;
             align-items: center;
+            width: 100%;
+            color: $font-color;
+            &:hover {
+                background-color: $hover-color;
+                border-color: $hover-color;
+            }
         }
     }
 
@@ -36,6 +47,7 @@
         width: 2rem;
         height: 2rem;
         margin: .3rem;
+        fill: $font-color; 
     }
 
     .logout {
