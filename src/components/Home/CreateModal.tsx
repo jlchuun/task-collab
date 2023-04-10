@@ -4,6 +4,11 @@ import { useForm } from "react-hook-form";
 import { projectSchema } from "../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+interface FormProps {
+    title: string;
+    description: string | undefined;
+}
+
 const CreateModal = () => {
     const [open, setOpen] = useState(false);
 
@@ -19,6 +24,8 @@ const CreateModal = () => {
         setOpen(!open);
     };
 
+    const createProject = (values: FormProps): void => {};
+
     return (
         <div>
             <button type="button" onClick={toggleModal}>
@@ -31,7 +38,19 @@ const CreateModal = () => {
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContainer}>
                         <h2>Create a New Project</h2>
-                        <form></form>
+                        <form onSubmit={handleSubmit(createProject)}>
+                            <input
+                                placeholder="title"
+                                autoComplete="off"
+                                {...register("title")}
+                            />
+                            <input
+                                placeholder="description (optional)"
+                                autoComplete="off"
+                                {...register("description")}
+                            />
+                            <button type="submit">Create Project</button>
+                        </form>
                         <button
                             type="button"
                             onClick={toggleModal}

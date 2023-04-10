@@ -7,6 +7,12 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
+interface FormProps {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
 const SignUp = () => {
     const {
         register,
@@ -27,7 +33,7 @@ const SignUp = () => {
     const [error, setError] = useState("");
 
     // creates new user in firebase
-    const handleSignup = async (values: any): Promise<void> => {
+    const handleSignup = async (values: FormProps): Promise<void> => {
         setFocus("email");
         reset();
         await createUserWithEmailAndPassword(

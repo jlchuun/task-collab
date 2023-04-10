@@ -7,6 +7,11 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, NavLink } from "react-router-dom";
 
+interface FormProps {
+    email: string;
+    password: string;
+}
+
 const SignIn = () => {
     const navigate = useNavigate();
 
@@ -26,7 +31,7 @@ const SignIn = () => {
     });
 
     // login existing user in firebase
-    const handleSignin = async (values: any): Promise<void> => {
+    const handleSignin = async (values: FormProps): Promise<void> => {
         setFocus("email");
         reset();
         await signInWithEmailAndPassword(auth, values.email, values.password)
