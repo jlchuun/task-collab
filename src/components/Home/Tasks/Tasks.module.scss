@@ -1,5 +1,7 @@
 $bg-color: #1f1f1f;
 $font-color: #F3F3F3;
+$font-hover: #616467;
+$delete-hover: #d8356b;
 
 ul {
     list-style: none;
@@ -13,10 +15,44 @@ ul {
     align-items: center;
 
     .header {
+        display: flex;
         width: 100%;
         padding-bottom: 2rem;
         margin-bottom: 2rem;
         border-bottom: .1rem solid $font-color;
+
+        .options {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .btn {
+            padding: 0 .5rem 0 .5rem;
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            color: $font-color;
+            background-color: transparent;
+
+            &:hover {
+                color: #fff;
+                background-color: $font-hover;
+            }  
+        }
+        .danger:hover {
+            background-color: $delete-hover;
+        }
+
     }
     .columns {
         display: flex;

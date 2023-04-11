@@ -11,21 +11,18 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
     const tasks = [
         {
             title: "Task 1",
-            description: "notes",
             createdBy: "Me",
             dueDate: "10/10/2022",
             status: "ongoing",
         },
         {
             title: "Task 2",
-            description: "notes",
             createdBy: "Me",
             dueDate: "10/10/2022",
             status: "ongoing",
         },
         {
             title: "Task 3",
-            description: "notes",
             createdBy: "Me",
             dueDate: "10/10/2022",
             status: "ongoing",
@@ -34,8 +31,17 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1>Project</h1>
-                <p>Description would go here</p>
+                <div>
+                    <h1>Project</h1>
+                    <p>Description would go here</p>
+                </div>
+                <div className={styles.options}>
+                    <button className={styles.btn}>Add a Task</button>
+                    <button className={styles.btn}>Manage Users</button>
+                    <button className={`${styles.btn} ${styles.danger}`}>
+                        Delete Project
+                    </button>
+                </div>
             </div>
             <div className={styles.columns}>
                 <ul className={styles.ongoing}>
