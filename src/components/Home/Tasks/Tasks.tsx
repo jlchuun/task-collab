@@ -10,7 +10,7 @@ type TasksProps = {
 const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
     const tasks = [
         {
-            title: "Task 1",
+            title: "This task name will be longer for longer cards",
             createdBy: "Me",
             dueDate: "10/10/2022",
             status: "ongoing",
@@ -31,7 +31,7 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <div>
+                <div className={styles.project}>
                     <h1>Project</h1>
                     <p>Description would go here</p>
                 </div>

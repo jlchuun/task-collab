@@ -17,9 +17,11 @@ ul {
     .header {
         display: flex;
         width: 100%;
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
         border-bottom: .1rem solid $font-color;
+
+        .project {
+            padding: 1rem;
+        }
 
         .options {
             margin-left: auto;
@@ -57,6 +59,11 @@ ul {
     .columns {
         display: flex;
         flex-wrap: wrap;
+        gap: 1rem;
+
+        h2 {
+            text-align: center;
+        }
     }
 }
 
@@ -68,43 +75,59 @@ ul {
     border: 1px solid #3d3d3d;
     border-radius: 5px;
     box-shadow: 0 2px 2px rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     position: relative;
     width: 20rem;
+    padding: 1rem;
+    margin: 1rem;
 
-    h3 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 0;
-        color: #ffffff;
+    .top {
+        margin-bottom: 1rem;
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0;
+            color: #ffffff;
+            max-width: 60%;
+        }
+
+        .status {
+            position: absolute;
+            right: .5rem;
+            background-color: #00aaff;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: .3rem;
+        }
     }
-
-    .status {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #00aaff;
-        color: #ffffff;
-        font-weight: bold;
-        border-radius: 10px;
-        padding: .3rem;
-    }
-
-    .dueDate {
+    
+    .bot {
         display: flex;
         align-items: center;
-        
+        justify-content: space-between;
+
+        .dueDate {
+            display: flex;
+            align-items: center;
+            color: $font-color;
+        }
         svg {
             padding: .2rem;
             width: 1.5rem;
+            height: 1.5rem;
             fill: $font-color;
         }
-        font-size: 14px;
-        margin-top: 10px;
-        color: #b3b3b3;
+
+        .dropdown {
+            position: absolute;
+            bottom: 0;
+            right: .5rem;
+
+        }
     }
+
+    
 }
 
