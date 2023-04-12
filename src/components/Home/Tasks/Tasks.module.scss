@@ -10,12 +10,14 @@ ul {
     padding: 0;
 }
 
-.container {
+.tasksContainer {
+    z-index: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-
+    margin-bottom: 10rem;
+    margin-left: 17.5%;
     .header {
         display: flex;
         width: 100%;
@@ -62,7 +64,6 @@ ul {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
-
         h2 {
             text-align: center;
         }
@@ -140,7 +141,7 @@ ul {
         }
 
         .dropdownContent {
-            position: fixed;
+            position: absolute;
             display: none;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -148,7 +149,7 @@ ul {
             font-size: 1rem;
             line-height: 1.2;
             border-radius: 10px;
-
+            border: 1px solid $border-color;
             button {
                 display: inline-block;
                 outline: none;

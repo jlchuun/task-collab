@@ -47,7 +47,7 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
         },
     ];
     return (
-        <div className={styles.container}>
+        <div className={styles.tasksContainer}>
             <div className={styles.header}>
                 <div className={styles.project}>
                     <h1>Project</h1>
