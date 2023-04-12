@@ -2,6 +2,7 @@ $font-color: #F0F0F0;
 $background-color: #1C1C1C;
 $hover-color: #474747;
 .sidebar {
+    position: fixed;
     text-align: center;
     height: 100dvh;
     background: $background-color;
