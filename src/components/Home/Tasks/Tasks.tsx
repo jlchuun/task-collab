@@ -27,6 +27,24 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
             dueDate: "10/10/2022",
             status: "ongoing",
         },
+        {
+            title: "This task name will be longer for longer cards",
+            createdBy: "Me",
+            dueDate: "10/10/2022",
+            status: "ongoing",
+        },
+        {
+            title: "Task 2",
+            createdBy: "Me",
+            dueDate: "10/10/2022",
+            status: "ongoing",
+        },
+        {
+            title: "Task 3",
+            createdBy: "Me",
+            dueDate: "10/10/2022",
+            status: "ongoing",
+        },
     ];
     return (
         <div className={styles.container}>
