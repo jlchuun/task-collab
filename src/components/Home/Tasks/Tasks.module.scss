@@ -1,11 +1,8 @@
 $bg-color: #1f1f1f;
 $border-color: #3d3d3d;
 $font-color: #F3F3F3;
-
-$danger-hover: #d8356b;
 $ongoing-color: #00aaff;
-$btn-color: #a772ec;
-$btn-hover: #9458e4;
+$danger-hover: #d8356b;
 
 ul {
     list-style: none;
@@ -143,7 +140,7 @@ ul {
                 
             }
             .danger:hover {
-                background-color: $delete-hover;
+                background-color: $danger-hover;
             }
         }
     }

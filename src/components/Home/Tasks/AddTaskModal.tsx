@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import styles from "../Modal.module.scss";
+import { taskSchema } from "../../../validationSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const AddTaskModal = () => {
     const [open, setOpen] = useState(false);
@@ -11,6 +13,7 @@ const AddTaskModal = () => {
         reset,
         formState: { errors },
     } = useForm({
+        resolver: yupResolver(taskSchema),
         defaultValues: {
             name: "",
             dueDate: "",
@@ -18,6 +21,11 @@ const AddTaskModal = () => {
     });
 
     const toggleModal = () => setOpen(!open);
+
+    const addTask = (values) => {
+        reset();
+        console.log(values);
+    };
 
     return (
         <div className={styles.addTaskContainer}>
@@ -30,7 +38,11 @@ const AddTaskModal = () => {
                         <div className={styles.modalContainer}>
                             <div className={styles.header}>
                                 <h2>Add a Task</h2>
-                                <button type="button" onClick={toggleModal}>
+                                <button
+                                    className={styles.btn}
+                                    type="button"
+                                    onClick={toggleModal}
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"
@@ -39,15 +51,22 @@ const AddTaskModal = () => {
                                     </svg>
                                 </button>
                             </div>
-                            <form>
+                            <form onSubmit={handleSubmit(addTask)}>
+                                {errors.name && (
+                                    <p className={styles.alert}>
+                                        {errors.name?.message}
+                                    </p>
+                                )}
                                 <input
                                     placeholder="task name"
                                     {...register("name")}
                                 />
-                                <input
-                                    type="datetime-local"
-                                    {...register("dueDate")}
-                                />
+                                {errors.dueDate && (
+                                    <p className={styles.alert}>
+                                        {errors.dueDate?.message}
+                                    </p>
+                                )}
+                                <input type="date" {...register("dueDate")} />
                                 <button
                                     className={styles.submitBtn}
                                     type="submit"

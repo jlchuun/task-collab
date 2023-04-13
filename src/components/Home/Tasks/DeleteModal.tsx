@@ -20,7 +20,11 @@ const DeleteModal = () => {
                         <div className={styles.modalContainer}>
                             <div className={styles.header}>
                                 <h2>Delete Project</h2>
-                                <button type="button" onClick={toggleModal}>
+                                <button
+                                    className={styles.btn}
+                                    type="button"
+                                    onClick={toggleModal}
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"

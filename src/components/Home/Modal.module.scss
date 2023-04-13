@@ -83,6 +83,13 @@ $danger-hover: #d8356b;
 
 }
 
+button {
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    border: none;
+}
+
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -119,3 +126,9 @@ $danger-hover: #d8356b;
     background-color: $danger-hover;
 }
 
+svg {
+    width: 2rem;
+    height: 2rem;
+    margin: .5rem;
+    fill: $font-color;
+}

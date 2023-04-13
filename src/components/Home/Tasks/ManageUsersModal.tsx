@@ -17,7 +17,11 @@ const ManageUsersModal = () => {
                         <div className={styles.modalContainer}>
                             <div className={styles.header}>
                                 <h2>Manage Users</h2>
-                                <button type="button" onClick={toggleModal}>
+                                <button
+                                    type="button"
+                                    className={styles.btn}
+                                    onClick={toggleModal}
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"
