@@ -50,8 +50,8 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
         <div className={styles.tasksContainer}>
             <div className={styles.header}>
                 <div className={styles.project}>
-                    <h1>Project</h1>
-                    <p>Description would go here</p>
+                    <h1>{projects[tabIndex].title}</h1>
+                    <p>{projects[tabIndex].description}</p>
                 </div>
                 <div className={styles.options}>
                     <button className={styles.btn}>Add a Task</button>
