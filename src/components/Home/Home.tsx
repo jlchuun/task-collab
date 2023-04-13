@@ -11,6 +11,7 @@ export type Project = {
     description: string;
     owner: string;
     users: string[] | null;
+    tasks: string[] | null;
     createdAt: Timestamp;
 };
 

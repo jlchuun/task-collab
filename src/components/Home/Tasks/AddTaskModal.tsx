@@ -1,12 +1,20 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "../Modal.module.scss";
 import { taskSchema } from "../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { db } from "../../../firebase";
+import { doc, collection, updateDoc, arrayUnion } from "firebase/firestore";
+import { AccountContext } from "../../AccountContext";
+import { Project } from "../Home";
+type Task = {
+    name: String;
+    dueDate: Date;
+};
 
-const AddTaskModal = () => {
+const AddTaskModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
-
+    const { currentUser } = useContext(AccountContext);
     const {
         register,
         handleSubmit,
@@ -22,8 +30,19 @@ const AddTaskModal = () => {
 
     const toggleModal = () => setOpen(!open);
 
-    const addTask = (values) => {
+    const addTask = async (values: Task): Promise<void> => {
         reset();
+        toggleModal();
+        console.log(project.id);
+        if (currentUser) {
+            const projectRef = doc(db, "projects", project.id);
+            await updateDoc(projectRef, {
+                tasks: arrayUnion({
+                    name: values.name,
+                    dueDate: values.dueDate,
+                } as Task),
+            });
+        }
         console.log(values);
     };
 

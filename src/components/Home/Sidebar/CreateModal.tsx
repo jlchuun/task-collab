@@ -44,6 +44,7 @@ const CreateModal = () => {
                 owner: currentUser.uid,
                 createdAt: Timestamp.now(),
                 users: [] as string[],
+                tasks: [] as string[],
             } as Project);
         }
     };

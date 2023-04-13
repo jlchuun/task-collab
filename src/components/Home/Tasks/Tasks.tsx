@@ -57,7 +57,7 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                     <p>{projects[tabIndex].description}</p>
                 </div>
                 <div className={styles.options}>
-                    <AddTaskModal />
+                    <AddTaskModal project={projects[tabIndex]} />
                     <ManageUsersModal />
                     <DeleteModal />
                 </div>
