@@ -2,6 +2,8 @@ import styles from "./Tasks.module.scss";
 import TaskCard from "./TaskCard";
 import { Project } from "../Home";
 import AddTaskModal from "./AddTaskModal";
+import ManageUsersModal from "./ManageUsersModal";
+import DeleteModal from "./DeleteModal";
 
 type TasksProps = {
     projects: Project[];
@@ -56,10 +58,8 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                 </div>
                 <div className={styles.options}>
                     <AddTaskModal />
-                    <button className={styles.btn}>Manage Users</button>
-                    <button className={`${styles.btn} ${styles.danger}`}>
-                        Delete Project
-                    </button>
+                    <ManageUsersModal />
+                    <DeleteModal />
                 </div>
             </div>
             <div className={styles.columns}>

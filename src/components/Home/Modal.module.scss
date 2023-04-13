@@ -1,8 +1,10 @@
 $background-color: #1C1C1C;
 $input-color: #1C1D23;
 $font-color: #F0F0F0;
+$font-hover: #616467;
 $btn-color: #a772ec;
 $btn-hover: #9458e4;
+$danger-hover: #d8356b;
 
 .modalContainer {
     position: absolute;
@@ -27,7 +29,7 @@ $btn-hover: #9458e4;
     }
 
     .alert {
-        color: #DC2626;
+        color: $danger-hover;
     }
 
     form {
@@ -55,7 +57,7 @@ $btn-hover: #9458e4;
             outline: none;
         }
 
-        .sidebarBtn {
+        .submitBtn {
             cursor: pointer;
             outline: 0;
             color: #fff;
@@ -90,27 +92,30 @@ $btn-hover: #9458e4;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
 }
-$font-hover: #616467;
-.addTaskContainer {
-    .btn {
-            padding: 0 .5rem 0 .5rem;
-            display: inline-block;
-            outline: none;
-            cursor: pointer;
-            border-radius: 500px;
-            transition-property: background-color, border-color, color, box-shadow, filter;
-            transition-duration: .3s;
-            border: 1px solid transparent;
-            text-transform: uppercase;
-            white-space: normal;
-            font-weight: 700;
-            text-align: center;
-            color: $font-color;
-            background-color: transparent;
-    
-            &:hover {
-                color: #fff;
-                background-color: $font-hover;
-            }
-        }
+
+.btn {
+    padding: 0 .5rem 0 .5rem;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    color: $font-color;
+    background-color: transparent;
+
+    &:hover {
+        color: #fff;
+        background-color: $font-hover;
+    }
 }
+
+.danger:hover {
+    background-color: $danger-hover;
+}
+

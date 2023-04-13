@@ -1,35 +1,22 @@
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import styles from "../Modal.module.scss";
 
-const AddTaskModal = () => {
+const ManageUsersModal = () => {
     const [open, setOpen] = useState(false);
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            name: "",
-            dueDate: "",
-        },
-    });
 
     const toggleModal = () => setOpen(!open);
 
     return (
         <div className={styles.addTaskContainer}>
             <button className={styles.btn} onClick={toggleModal}>
-                Add Task
+                Manage Users
             </button>
             <div>
                 {open && (
                     <div className={styles.modalOverlay}>
                         <div className={styles.modalContainer}>
                             <div className={styles.header}>
-                                <h2>Add a Task</h2>
+                                <h2>Manage Users</h2>
                                 <button type="button" onClick={toggleModal}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -39,22 +26,6 @@ const AddTaskModal = () => {
                                     </svg>
                                 </button>
                             </div>
-                            <form>
-                                <input
-                                    placeholder="task name"
-                                    {...register("name")}
-                                />
-                                <input
-                                    type="datetime-local"
-                                    {...register("dueDate")}
-                                />
-                                <button
-                                    className={styles.submitBtn}
-                                    type="submit"
-                                >
-                                    Add Task
-                                </button>
-                            </form>
                         </div>
                     </div>
                 )}
@@ -63,4 +34,4 @@ const AddTaskModal = () => {
     );
 };
 
-export default AddTaskModal;
+export default ManageUsersModal;

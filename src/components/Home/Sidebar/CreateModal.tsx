@@ -95,7 +95,9 @@ const CreateModal = () => {
                                 autoComplete="off"
                                 {...register("description")}
                             />
-                            <button type="submit">Create Project</button>
+                            <button className={styles.submitBtn} type="submit">
+                                Create Project
+                            </button>
                         </form>
                     </div>
                 </div>
