@@ -55,7 +55,7 @@ $btn-hover: #9458e4;
             outline: none;
         }
 
-        button {
+        .sidebarBtn {
             cursor: pointer;
             outline: 0;
             color: #fff;
@@ -90,4 +90,27 @@ $btn-hover: #9458e4;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
 }
-
+$font-hover: #616467;
+.addTaskContainer {
+    .btn {
+            padding: 0 .5rem 0 .5rem;
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            color: $font-color;
+            background-color: transparent;
+    
+            &:hover {
+                color: #fff;
+                background-color: $font-hover;
+            }
+        }
+}
