@@ -50,35 +50,39 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
         },
     ];
     return (
-        <div className={styles.tasksContainer}>
-            <div className={styles.header}>
-                <div className={styles.project}>
-                    <h1>{projects[tabIndex].title}</h1>
-                    <p>{projects[tabIndex].description}</p>
-                </div>
-                <div className={styles.options}>
-                    <AddTaskModal project={projects[tabIndex]} />
-                    <ManageUsersModal />
-                    <DeleteModal />
-                </div>
-            </div>
-            <div className={styles.columns}>
-                <ul className={styles.ongoing}>
-                    <h2>Ongoing</h2>
+        <>
+            {projects[tabIndex] && (
+                <div className={styles.tasksContainer}>
+                    <div className={styles.header}>
+                        <div className={styles.project}>
+                            <h1>{projects[tabIndex].title}</h1>
+                            <p>{projects[tabIndex].description}</p>
+                        </div>
+                        <div className={styles.options}>
+                            <AddTaskModal project={projects[tabIndex]} />
+                            <ManageUsersModal />
+                            <DeleteModal />
+                        </div>
+                    </div>
+                    <div className={styles.columns}>
+                        <ul className={styles.ongoing}>
+                            <h2>Ongoing</h2>
 
-                    {tasks.map((task) => (
-                        <TaskCard key={task.title} task={task} />
-                    ))}
-                </ul>
-                <ul className={styles.completed}>
-                    <h2>Completed</h2>
+                            {tasks.map((task) => (
+                                <TaskCard key={task.title} task={task} />
+                            ))}
+                        </ul>
+                        <ul className={styles.completed}>
+                            <h2>Completed</h2>
 
-                    {tasks.map((task) => (
-                        <TaskCard key={task.title} task={task} />
-                    ))}
-                </ul>
-            </div>
-        </div>
+                            {tasks.map((task) => (
+                                <TaskCard key={task.title} task={task} />
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

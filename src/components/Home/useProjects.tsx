@@ -10,9 +10,8 @@ import {
 import { AccountContext } from "../AccountContext";
 import { Project } from "./Home";
 
-const useProjects = () => {
+const useProjects = (setProjects: any): any => {
     const { currentUser } = useContext(AccountContext);
-    const [projects, setProjects] = useState<Project[]>([]);
 
     useEffect(() => {
         if (currentUser) {
@@ -35,9 +34,7 @@ const useProjects = () => {
 
             return unsubscribe;
         }
-    }, []);
-
-    return projects;
+    }, [setProjects]);
 };
 
 export default useProjects;

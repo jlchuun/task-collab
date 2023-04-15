@@ -16,10 +16,11 @@ export type Project = {
 };
 
 const Home = () => {
-    const projects: Array<Project> = useProjects();
+    const [projects, setProjects] = useState([]);
     const [tabIndex, setTabIndex] = useState(0);
-    useProjects();
 
+    useProjects(setProjects);
+    console.log(projects);
     return (
         <div className={styles.container}>
             <Sidebar

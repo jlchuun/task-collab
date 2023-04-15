@@ -33,7 +33,6 @@ const AddTaskModal = ({ project }: { project: Project }) => {
     const addTask = async (values: Task): Promise<void> => {
         reset();
         toggleModal();
-        console.log(project.id);
         if (currentUser) {
             const projectRef = doc(db, "projects", project.id);
             await updateDoc(projectRef, {
@@ -43,7 +42,6 @@ const AddTaskModal = ({ project }: { project: Project }) => {
                 } as Task),
             });
         }
-        console.log(values);
     };
 
     return (
