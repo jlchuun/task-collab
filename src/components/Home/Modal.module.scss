@@ -13,7 +13,7 @@ $danger-hover: #d8356b;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background: $background-color;
-    min-width: 35em;
+    min-width: 35rem;
     max-width: 40%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     
@@ -83,6 +83,12 @@ $danger-hover: #d8356b;
 
 }
 
+.editProjectContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     cursor: pointer;
     background: none;
@@ -118,6 +124,17 @@ button {
 
     &:hover {
         color: #fff;
+        background-color: $font-hover;
+    }
+}
+
+.toggleBtn {
+    margin-left: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
         background-color: $font-hover;
     }
 }

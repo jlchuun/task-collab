@@ -8,10 +8,10 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { Project } from "../Home";
 import { AccountContext } from "../../AccountContext";
 
-interface FormProps {
+type FormProps = {
     title: string;
     description: string | undefined;
-}
+};
 
 const CreateModal = () => {
     const [open, setOpen] = useState(false);

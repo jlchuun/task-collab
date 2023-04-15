@@ -10,7 +10,6 @@ ul {
 }
 
 .tasksContainer {
-    height: 100vh;
     z-index: 0;
     display: flex;
     flex-direction: column;
@@ -23,21 +22,13 @@ ul {
         border-bottom: .1rem solid $font-color;
 
         .project {
+            
             padding: 1rem;
 
             h1 {
                 display: flex;
                 align-items: center;
-                button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    &:hover {
-                        background-color: $border-color;
-                    }
-                }
             }
-            
         }
 
         .options {
@@ -56,8 +47,6 @@ ul {
         }
     }
 }
-
-
 
 
 .taskCard {
