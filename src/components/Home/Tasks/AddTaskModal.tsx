@@ -39,6 +39,7 @@ const AddTaskModal = ({ project }: { project: Project }) => {
                 tasks: arrayUnion({
                     name: values.name,
                     dueDate: values.dueDate,
+                    status: "ongoing",
                 } as Task),
             });
         }

@@ -24,6 +24,20 @@ ul {
 
         .project {
             padding: 1rem;
+
+            h1 {
+                display: flex;
+                align-items: center;
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &:hover {
+                        background-color: $border-color;
+                    }
+                }
+            }
+            
         }
 
         .options {
