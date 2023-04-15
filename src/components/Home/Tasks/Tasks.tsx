@@ -11,44 +11,6 @@ type TasksProps = {
 };
 
 const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
-    const tasks = [
-        {
-            title: "This task name will be longer for longer cards",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-        {
-            title: "Task 2",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-        {
-            title: "Task 3",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-        {
-            title: "This task name will be longer for longer cards",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-        {
-            title: "Task 2",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-        {
-            title: "Task 3",
-            createdBy: "Me",
-            dueDate: "10/10/2022",
-            status: "ongoing",
-        },
-    ];
     return (
         <>
             {projects[tabIndex] && (
@@ -67,17 +29,18 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                     <div className={styles.columns}>
                         <ul className={styles.ongoing}>
                             <h2>Ongoing</h2>
-
-                            {tasks.map((task) => (
-                                <TaskCard key={task.title} task={task} />
-                            ))}
+                            {projects[tabIndex].tasks &&
+                                projects[tabIndex].tasks.map((task) => (
+                                    <TaskCard key={task} task={task} />
+                                ))}
                         </ul>
                         <ul className={styles.completed}>
                             <h2>Completed</h2>
 
-                            {tasks.map((task) => (
-                                <TaskCard key={task.title} task={task} />
-                            ))}
+                            {projects[tabIndex].tasks &&
+                                projects[tabIndex].tasks.map((task) => (
+                                    <TaskCard key={task} task={task} />
+                                ))}
                         </ul>
                     </div>
                 </div>

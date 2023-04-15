@@ -10,12 +10,12 @@ ul {
 }
 
 .tasksContainer {
+    height: 100vh;
     z-index: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-bottom: 10rem;
     margin-left: 17.5%;
     .header {
         display: flex;
