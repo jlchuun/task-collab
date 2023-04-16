@@ -4,7 +4,14 @@ import { useForm } from "react-hook-form";
 import { projectSchema } from "../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { db } from "../../../firebase";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import {
+    collection,
+    addDoc,
+    Timestamp,
+    doc,
+    updateDoc,
+    arrayUnion,
+} from "firebase/firestore";
 import { Project } from "../Home";
 import { AccountContext } from "../../AccountContext";
 
@@ -38,7 +45,7 @@ const CreateModal = () => {
         reset();
         toggleModal();
         if (currentUser) {
-            await addDoc(collection(db, "projects"), {
+            const projectRef = await addDoc(collection(db, "projects"), {
                 title: values.title,
                 description: values.description,
                 owner: currentUser.uid,
@@ -46,6 +53,12 @@ const CreateModal = () => {
                 users: [] as string[],
                 tasks: [] as string[],
             } as Project);
+
+            const userRef = doc(db, "users", currentUser.uid);
+
+            await updateDoc(userRef, {
+                projects: arrayUnion(projectRef.id),
+            });
         }
     };
 

@@ -6,7 +6,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -56,8 +56,9 @@ const SignUp = () => {
 
         await signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                addDoc(collection(db, "users"), {
+                const userid = userCredential.user.uid;
+
+                setDoc(doc(db, "users", userid), {
                     email: values.email,
                     projects: [],
                 });
