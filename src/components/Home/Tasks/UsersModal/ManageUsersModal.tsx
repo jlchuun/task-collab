@@ -15,7 +15,6 @@ import {
 } from "firebase/firestore";
 import { Project } from "../../Home";
 import UserItem from "./UserItem";
-import { AccountContext } from "../../../AccountContext";
 
 type FormProps = {
     email: string;
@@ -24,7 +23,7 @@ type FormProps = {
 const ManageUsersModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
     const [error, setError] = useState("");
-    const { currentUser } = useContext(AccountContext);
+
     const toggleModal = () => {
         setOpen(!open);
         setError("");
@@ -127,7 +126,11 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
                             <ul>
                                 {project.users &&
                                     project.users.map((user) => (
-                                        <UserItem key={user} user={user} />
+                                        <UserItem
+                                            key={user}
+                                            user={user}
+                                            project={project}
+                                        />
                                     ))}
                             </ul>
                         </div>
