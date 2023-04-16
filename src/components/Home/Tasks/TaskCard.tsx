@@ -22,7 +22,15 @@ const TaskCard = ({ task, project }) => {
     return (
         <li className={styles.taskCard}>
             <div className={styles.top}>
-                <p className={styles.status}>{task.status}</p>
+                <p
+                    className={`${styles.status} ${
+                        task.status === "ongoing"
+                            ? styles.ongoingStatus
+                            : styles.completedStatus
+                    }`}
+                >
+                    {task.status}
+                </p>
                 <h3>{task.name}</h3>
             </div>
             <div className={styles.bot}>
