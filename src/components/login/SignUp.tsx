@@ -2,7 +2,12 @@ import styles from "./Login.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../validationSchema";
 import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -44,7 +49,19 @@ const SignUp = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
-                navigate("/");
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
+
+        await signInWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                addDoc(collection(db, "users"), {
+                    email: values.email,
+                    projects: [],
+                });
+                navigate("/home");
             })
             .catch((err) => {
                 setError(err.message);

@@ -20,7 +20,6 @@ const Home = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
     useProjects(setProjects);
-    console.log(projects);
     return (
         <div className={styles.container}>
             <Sidebar

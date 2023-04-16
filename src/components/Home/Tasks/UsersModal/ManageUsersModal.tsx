@@ -4,9 +4,15 @@ import { addUserSchema } from "../../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { db } from "../../../../firebase";
 import { useForm } from "react-hook-form";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+
 import UserItem from "./UserItem";
 
-const ManageUsersModal = () => {
+type FormProps = {
+    email: string;
+};
+
+const ManageUsersModal = ({ project }) => {
     const [open, setOpen] = useState(false);
 
     const toggleModal = () => setOpen(!open);
@@ -22,7 +28,21 @@ const ManageUsersModal = () => {
         },
     });
 
-    const addUser = () => {};
+    const addUser = async (values: FormProps) => {
+        reset();
+        toggleModal();
+        const projectRef = doc(db, "projects", project.id);
+        await updateDoc(projectRef, {
+            users: arrayUnion({
+                email: values.email,
+            }),
+        });
+
+        const userRef = doc(db, "users", values.email);
+        await updateDoc(userRef, {
+            projects: arrayUnion(project.id),
+        });
+    };
     return (
         <div className={styles.addTaskContainer}>
             <button className={styles.btn} onClick={toggleModal}>
