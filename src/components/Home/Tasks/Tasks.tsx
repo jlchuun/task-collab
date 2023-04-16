@@ -32,17 +32,33 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                         <ul className={styles.ongoing}>
                             <h2>Ongoing</h2>
                             {projects[tabIndex].tasks &&
-                                projects[tabIndex].tasks.map((task) => (
-                                    <TaskCard key={task} task={task} />
-                                ))}
+                                projects[tabIndex].tasks
+                                    ?.filter(
+                                        (task) => task.status === "ongoing"
+                                    )
+                                    .map((task) => (
+                                        <TaskCard
+                                            key={task}
+                                            task={task}
+                                            project={projects[tabIndex]}
+                                        />
+                                    ))}
                         </ul>
                         <ul className={styles.completed}>
                             <h2>Completed</h2>
 
                             {projects[tabIndex].tasks &&
-                                projects[tabIndex].tasks.map((task) => (
-                                    <TaskCard key={task} task={task} />
-                                ))}
+                                projects[tabIndex].tasks
+                                    .filter(
+                                        (task) => task.status === "completed"
+                                    )
+                                    .map((task) => (
+                                        <TaskCard
+                                            key={task}
+                                            task={task}
+                                            project={projects[tabIndex]}
+                                        />
+                                    ))}
                         </ul>
                     </div>
                 </div>

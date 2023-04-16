@@ -7,6 +7,7 @@ $danger-hover: #d8356b;
 ul {
     list-style: none;
     padding: 0;
+    width: 20rem;
 }
 
 .tasksContainer {
@@ -111,7 +112,9 @@ ul {
             ul {
                 background-color: $bg-color;
                 li {
-                    padding: .5rem;
+                    button {
+                        padding: .5rem;
+                    }
                 }
             }
         }

@@ -1,7 +1,24 @@
 import styles from "./Tasks.module.scss";
 import { Project } from "../Home";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from "../../../firebase";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, project }) => {
+    const toggleStatus = async () => {
+        const newStatus = task.status === "ongoing" ? "completed" : "ongoing";
+        const projectRef = doc(db, "projects", project.id);
+        await updateDoc(projectRef, {
+            tasks: arrayRemove(task),
+        });
+
+        await updateDoc(projectRef, {
+            tasks: arrayUnion({
+                ...task,
+                status: newStatus,
+            }),
+        });
+    };
+
     return (
         <li className={styles.taskCard}>
             <div className={styles.top}>
@@ -27,10 +44,9 @@ const TaskCard = ({ task }) => {
                     </svg>
                     <ul className={styles.dropdownContent}>
                         <li>
-                            <button>Set Status</button>
-                        </li>
-                        <li>
-                            <button>Manage Users</button>
+                            <button onClick={toggleStatus}>
+                                Toggle Status
+                            </button>
                         </li>
                         <li>
                             <button className={styles.danger}>

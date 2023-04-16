@@ -4,7 +4,7 @@ import styles from "../Modal.module.scss";
 import { taskSchema } from "../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { db } from "../../../firebase";
-import { doc, collection, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { AccountContext } from "../../AccountContext";
 import { Project } from "../Home";
 type Task = {
