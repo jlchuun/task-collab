@@ -22,8 +22,11 @@ type FormProps = {
 
 const ManageUsersModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
-
-    const toggleModal = () => setOpen(!open);
+    const [error, setError] = useState("");
+    const toggleModal = () => {
+        setOpen(!open);
+        setError("");
+    };
     const {
         register,
         handleSubmit,
@@ -37,13 +40,6 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
     });
 
     const addUser = async (values: FormProps) => {
-        reset();
-        toggleModal();
-        const projectRef = doc(db, "projects", project.id);
-        await updateDoc(projectRef, {
-            users: arrayUnion(values.email),
-        });
-
         // query should return only one user
         const userQuery = query(
             collection(db, "users"),
@@ -51,12 +47,28 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
         );
 
         const querySnapshot = await getDocs(userQuery);
+
+        // check if user email exists in users doc
+        if (querySnapshot.empty) {
+            setError("User email does not exist");
+            reset();
+            return;
+        }
+
         // add project to added user doc
         await querySnapshot.forEach((doc) => {
             updateDoc(doc.ref, {
                 projects: arrayUnion(project.id),
             });
         });
+
+        // add user to projects doc
+        const projectRef = doc(db, "projects", project.id);
+        await updateDoc(projectRef, {
+            users: arrayUnion(values.email),
+        });
+        reset();
+        toggleModal();
     };
     console.log(project.users);
     return (
@@ -84,6 +96,10 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
                                 </button>
                             </div>
                             <form onSubmit={handleSubmit(addUser)}>
+                                {error && (
+                                    <p className={styles.alert}>{error}</p>
+                                )}
+
                                 {errors.email && (
                                     <p className={styles.alert}>
                                         {errors.email?.message}
