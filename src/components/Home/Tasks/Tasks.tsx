@@ -6,6 +6,8 @@ import ManageUsersModal from "./UsersModal/ManageUsersModal";
 import DeleteModal from "./DeleteModal";
 import EditProjectModal from "./EditProjectModal";
 import { Timestamp } from "firebase/firestore";
+import { AccountContext } from "../../AccountContext";
+import { useContext } from "react";
 
 type TasksProps = {
     projects: Project[];
@@ -18,6 +20,7 @@ export type Task = {
 };
 
 const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
+    const { currentUser } = useContext(AccountContext);
     return (
         <>
             {projects[tabIndex] && (
@@ -31,7 +34,9 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                         <div className={styles.options}>
                             <AddTaskModal project={projects[tabIndex]} />
                             <ManageUsersModal project={projects[tabIndex]} />
-                            <DeleteModal />
+                            {currentUser?.uid === projects[tabIndex].owner && (
+                                <DeleteModal />
+                            )}
                         </div>
                     </div>
                     <div className={styles.columns}>
