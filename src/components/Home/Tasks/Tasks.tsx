@@ -35,7 +35,7 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                             <AddTaskModal project={projects[tabIndex]} />
                             <ManageUsersModal project={projects[tabIndex]} />
                             {currentUser?.uid === projects[tabIndex].owner && (
-                                <DeleteModal />
+                                <DeleteModal project={projects[tabIndex]} />
                             )}
                         </div>
                     </div>

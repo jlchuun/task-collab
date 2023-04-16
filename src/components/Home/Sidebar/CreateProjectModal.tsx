@@ -14,7 +14,7 @@ import {
 } from "firebase/firestore";
 import { Project } from "../Home";
 import { AccountContext } from "../../AccountContext";
-
+import { Task } from "../Tasks/Tasks";
 type FormProps = {
     title: string;
     description: string | undefined;
@@ -51,7 +51,7 @@ const CreateProjectModal = () => {
                 owner: currentUser.uid,
                 createdAt: Timestamp.now(),
                 users: [currentUser.email] as string[],
-                tasks: [] as string[],
+                tasks: [] as Task[],
             } as Project);
 
             const userRef = doc(db, "users", currentUser.uid);
