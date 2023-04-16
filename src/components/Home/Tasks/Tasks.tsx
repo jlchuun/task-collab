@@ -2,7 +2,7 @@ import styles from "./Tasks.module.scss";
 import TaskCard from "./TaskCard";
 import { Project } from "../Home";
 import AddTaskModal from "./AddTaskModal";
-import ManageUsersModal from "./ManageUsersModal";
+import ManageUsersModal from "./UsersModal/ManageUsersModal";
 import DeleteModal from "./DeleteModal";
 import EditProjectModal from "./EditProjectModal";
 

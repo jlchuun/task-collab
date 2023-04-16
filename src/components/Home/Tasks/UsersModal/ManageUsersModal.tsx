@@ -1,11 +1,28 @@
 import { useState } from "react";
-import styles from "../Modal.module.scss";
+import styles from "../../Modal.module.scss";
+import { addUserSchema } from "../../../../validationSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { db } from "../../../../firebase";
+import { useForm } from "react-hook-form";
+import UserItem from "./UserItem";
 
 const ManageUsersModal = () => {
     const [open, setOpen] = useState(false);
 
     const toggleModal = () => setOpen(!open);
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(addUserSchema),
+        defaultValues: {
+            email: "",
+        },
+    });
 
+    const addUser = () => {};
     return (
         <div className={styles.addTaskContainer}>
             <button className={styles.btn} onClick={toggleModal}>
@@ -30,6 +47,25 @@ const ManageUsersModal = () => {
                                     </svg>
                                 </button>
                             </div>
+                            <form onSubmit={handleSubmit(addUser)}>
+                                {errors.email && (
+                                    <p className={styles.alert}>
+                                        {errors.email?.message}
+                                    </p>
+                                )}
+                                <input
+                                    autoComplete="off"
+                                    placeholder="email"
+                                    {...register("email")}
+                                />
+                                <button
+                                    className={styles.submitBtn}
+                                    type="submit"
+                                >
+                                    Add Task
+                                </button>
+                            </form>
+                            <ul></ul>
                         </div>
                     </div>
                 )}

@@ -1,0 +1,18 @@
+$delete-color: #ff0000b4;
+$hover-color: #474747;
+.userItem {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    button {
+        margin-left: auto;
+        svg {
+            fill: $delete-color;
+        }
+
+        &:hover {
+            background-color: $hover-color;
+        }
+
+    }
+}

@@ -21,9 +21,9 @@ export const projectSchema = yup.object({
     description: yup.string().optional()
 });
 
-const formatDate = (date: Date) : String => {
-    return new Date(date).toDateString();
-}
+export const addUserSchema = yup.object({
+    email: yup.string().required("Email is required").email()
+});
 
 export const taskSchema = yup.object({
     name: yup.string().required("Task name required").max(20, "Task name has to be less than 20 characters"),
