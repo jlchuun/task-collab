@@ -1,10 +1,9 @@
 import styles from "./Home.module.scss";
 import Sidebar from "./Sidebar/Sidebar";
-import { useState } from "react";
 import useProjects from "./useProjects";
 import { Timestamp } from "firebase/firestore";
 import Tasks from "./Tasks/Tasks";
-
+import { useState, Dispatch, SetStateAction } from "react";
 export type Project = {
     id: string;
     title: string;
@@ -16,7 +15,7 @@ export type Project = {
 };
 
 const Home = () => {
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [tabIndex, setTabIndex] = useState(0);
 
     useProjects(setProjects);
