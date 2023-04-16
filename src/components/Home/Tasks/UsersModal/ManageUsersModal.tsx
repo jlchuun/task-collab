@@ -4,7 +4,15 @@ import { addUserSchema } from "../../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { db } from "../../../../firebase";
 import { useForm } from "react-hook-form";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import {
+    doc,
+    updateDoc,
+    arrayUnion,
+    where,
+    query,
+    collection,
+    getDocs,
+} from "firebase/firestore";
 
 import UserItem from "./UserItem";
 
@@ -38,9 +46,18 @@ const ManageUsersModal = ({ project }) => {
             }),
         });
 
-        const userRef = doc(db, "users", values.email);
-        await updateDoc(userRef, {
-            projects: arrayUnion(project.id),
+        // query should return only one user
+        const userQuery = query(
+            collection(db, "users"),
+            where("email", "==", values.email)
+        );
+
+        const querySnapshot = await getDocs(userQuery);
+
+        await querySnapshot.forEach((doc) => {
+            updateDoc(doc.ref, {
+                projects: arrayUnion(project.id),
+            });
         });
     };
     return (
