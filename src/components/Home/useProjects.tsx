@@ -18,7 +18,7 @@ const useProjects = (setProjects: any): any => {
             const userProjects = query(
                 collection(db, "projects"),
                 orderBy("createdAt", "desc"),
-                where("owner", "==", currentUser.uid)
+                where("users", "array-contains", currentUser.uid)
             );
             const unsubscribe = onSnapshot(userProjects, (querySnapshot) => {
                 const projectList: Project[] | null = [];

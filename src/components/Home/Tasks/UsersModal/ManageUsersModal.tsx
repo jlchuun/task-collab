@@ -40,11 +40,6 @@ const ManageUsersModal = ({ project }) => {
         reset();
         toggleModal();
         const projectRef = doc(db, "projects", project.id);
-        await updateDoc(projectRef, {
-            users: arrayUnion({
-                email: values.email,
-            }),
-        });
 
         // query should return only one user
         const userQuery = query(
@@ -57,6 +52,10 @@ const ManageUsersModal = ({ project }) => {
         await querySnapshot.forEach((doc) => {
             updateDoc(doc.ref, {
                 projects: arrayUnion(project.id),
+            });
+
+            updateDoc(projectRef, {
+                users: arrayUnion(doc.id),
             });
         });
     };
@@ -99,7 +98,7 @@ const ManageUsersModal = ({ project }) => {
                                     className={styles.submitBtn}
                                     type="submit"
                                 >
-                                    Add Task
+                                    Add User
                                 </button>
                             </form>
                             <ul></ul>

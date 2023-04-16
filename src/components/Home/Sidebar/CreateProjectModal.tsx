@@ -20,7 +20,7 @@ type FormProps = {
     description: string | undefined;
 };
 
-const CreateModal = () => {
+const CreateProjectModal = () => {
     const [open, setOpen] = useState(false);
     const { currentUser } = useContext(AccountContext);
 
@@ -50,7 +50,7 @@ const CreateModal = () => {
                 description: values.description,
                 owner: currentUser.uid,
                 createdAt: Timestamp.now(),
-                users: [] as string[],
+                users: [currentUser.uid] as string[],
                 tasks: [] as string[],
             } as Project);
 
@@ -120,4 +120,4 @@ const CreateModal = () => {
     );
 };
 
-export default CreateModal;
+export default CreateProjectModal;

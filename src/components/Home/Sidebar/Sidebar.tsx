@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.scss";
 import { Project } from "../Home";
-import CreateModal from "./CreateModal";
+import CreateProjectModal from "./CreateProjectModal";
 import { auth } from "../../../firebase";
 
 type SidebarProps = {
@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     ))}
                 </ul>
                 <li className={styles.addProject}>
-                    <CreateModal />
+                    <CreateProjectModal />
                 </li>
                 <li className={styles.logout} onClick={handleLogout}>
                     <button>
