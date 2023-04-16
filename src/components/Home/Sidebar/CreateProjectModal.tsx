@@ -50,7 +50,7 @@ const CreateProjectModal = () => {
                 description: values.description,
                 owner: currentUser.uid,
                 createdAt: Timestamp.now(),
-                users: [currentUser.uid] as string[],
+                users: [currentUser.email] as string[],
                 tasks: [] as string[],
             } as Project);
 

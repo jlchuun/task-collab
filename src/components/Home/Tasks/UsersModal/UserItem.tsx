@@ -1,9 +1,9 @@
 import styles from "./User.module.scss";
 
-const UserItem = () => {
+const UserItem = ({ user }) => {
     return (
         <li className={styles.userItem}>
-            <h3>Emasdfasdfasdfasdfasdfsfil</h3>
+            <h3>{user}</h3>
 
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

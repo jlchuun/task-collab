@@ -40,6 +40,9 @@ const ManageUsersModal = ({ project }) => {
         reset();
         toggleModal();
         const projectRef = doc(db, "projects", project.id);
+        await updateDoc(projectRef, {
+            users: arrayUnion(values.email),
+        });
 
         // query should return only one user
         const userQuery = query(
@@ -48,17 +51,14 @@ const ManageUsersModal = ({ project }) => {
         );
 
         const querySnapshot = await getDocs(userQuery);
-
+        // add project to added user doc
         await querySnapshot.forEach((doc) => {
             updateDoc(doc.ref, {
                 projects: arrayUnion(project.id),
             });
-
-            updateDoc(projectRef, {
-                users: arrayUnion(doc.id),
-            });
         });
     };
+    console.log(project.users);
     return (
         <div className={styles.addTaskContainer}>
             <button className={styles.btn} onClick={toggleModal}>
@@ -101,7 +101,11 @@ const ManageUsersModal = ({ project }) => {
                                     Add User
                                 </button>
                             </form>
-                            <ul></ul>
+                            <ul>
+                                {project.users.map((user) => (
+                                    <UserItem user={user} />
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 )}
