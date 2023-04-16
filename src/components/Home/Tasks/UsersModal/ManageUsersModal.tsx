@@ -13,14 +13,14 @@ import {
     collection,
     getDocs,
 } from "firebase/firestore";
-
+import { Project } from "../../Home";
 import UserItem from "./UserItem";
 
 type FormProps = {
     email: string;
 };
 
-const ManageUsersModal = ({ project }) => {
+const ManageUsersModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
 
     const toggleModal = () => setOpen(!open);
@@ -102,9 +102,10 @@ const ManageUsersModal = ({ project }) => {
                                 </button>
                             </form>
                             <ul>
-                                {project.users.map((user) => (
-                                    <UserItem user={user} />
-                                ))}
+                                {project.users &&
+                                    project.users.map((user) => (
+                                        <UserItem user={user} />
+                                    ))}
                             </ul>
                         </div>
                     </div>

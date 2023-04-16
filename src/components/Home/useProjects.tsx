@@ -10,7 +10,7 @@ import {
 import { AccountContext } from "../AccountContext";
 import { Project } from "./Home";
 
-const useProjects = (setProjects: any): any => {
+const useProjects = (setProjects: (projects: Project[]) => void) => {
     const { currentUser } = useContext(AccountContext);
 
     useEffect(() => {

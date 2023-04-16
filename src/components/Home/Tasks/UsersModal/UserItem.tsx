@@ -1,6 +1,6 @@
 import styles from "./User.module.scss";
 
-const UserItem = ({ user }) => {
+const UserItem = ({ user }: { user: string }) => {
     return (
         <li className={styles.userItem}>
             <h3>{user}</h3>
