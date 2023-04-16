@@ -4,13 +4,10 @@ import styles from "../Modal.module.scss";
 import { taskSchema } from "../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { db } from "../../../firebase";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { AccountContext } from "../../AccountContext";
 import { Project } from "../Home";
-type Task = {
-    name: String;
-    dueDate: Date;
-};
+import { Task } from "./Tasks";
 
 const AddTaskModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
@@ -34,11 +31,14 @@ const AddTaskModal = ({ project }: { project: Project }) => {
         reset();
         toggleModal();
         if (currentUser) {
+            console.log(values.dueDate);
             const projectRef = doc(db, "projects", project.id);
             await updateDoc(projectRef, {
                 tasks: arrayUnion({
                     name: values.name,
-                    dueDate: values.dueDate,
+                    dueDate: Timestamp.fromDate(
+                        new Date(values.dueDate.toString())
+                    ),
                     status: "ongoing",
                 } as Task),
             });

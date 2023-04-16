@@ -3,14 +3,16 @@ import Sidebar from "./Sidebar/Sidebar";
 import useProjects from "./useProjects";
 import { Timestamp } from "firebase/firestore";
 import Tasks from "./Tasks/Tasks";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
+import { Task } from "./Tasks/Tasks";
+
 export type Project = {
     id: string;
     title: string;
     description: string;
     owner: string;
     users: string[] | null;
-    tasks: string[] | null;
+    tasks: Task[] | null;
     createdAt: Timestamp;
 };
 

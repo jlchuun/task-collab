@@ -3,7 +3,10 @@ import { Project } from "../Home";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../../../firebase";
 
-const TaskCard = ({ task, project }) => {
+import { Task } from "./Tasks";
+
+const TaskCard = ({ task, project }: { task: Task; project: Project }) => {
+    console.log(task.dueDate);
     const toggleStatus = async () => {
         const newStatus = task.status === "ongoing" ? "completed" : "ongoing";
         const projectRef = doc(db, "projects", project.id);
@@ -16,6 +19,13 @@ const TaskCard = ({ task, project }) => {
                 ...task,
                 status: newStatus,
             }),
+        });
+    };
+
+    const deleteTask = async () => {
+        const projectRef = doc(db, "projects", project.id);
+        await updateDoc(projectRef, {
+            tasks: arrayRemove(task),
         });
     };
 
@@ -41,7 +51,7 @@ const TaskCard = ({ task, project }) => {
                     >
                         <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
                     </svg>
-                    4/10/2023
+                    {task.dueDate.toDate().toLocaleString().split(",")[0]}
                 </p>
                 <div className={styles.dropdown}>
                     <svg
@@ -57,7 +67,10 @@ const TaskCard = ({ task, project }) => {
                             </button>
                         </li>
                         <li>
-                            <button className={styles.danger}>
+                            <button
+                                onClick={deleteTask}
+                                className={styles.danger}
+                            >
                                 Delete Task
                             </button>
                         </li>

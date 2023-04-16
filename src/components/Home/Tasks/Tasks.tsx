@@ -5,10 +5,16 @@ import AddTaskModal from "./AddTaskModal";
 import ManageUsersModal from "./UsersModal/ManageUsersModal";
 import DeleteModal from "./DeleteModal";
 import EditProjectModal from "./EditProjectModal";
+import { Timestamp } from "firebase/firestore";
 
 type TasksProps = {
     projects: Project[];
     tabIndex: number;
+};
+export type Task = {
+    name: string;
+    status: "ongoing" | "completed";
+    dueDate: Timestamp;
 };
 
 const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
@@ -38,7 +44,7 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
                                     )
                                     .map((task) => (
                                         <TaskCard
-                                            key={task}
+                                            key={task.name}
                                             task={task}
                                             project={projects[tabIndex]}
                                         />
@@ -49,12 +55,12 @@ const Tasks: React.FC<TasksProps> = ({ projects, tabIndex }) => {
 
                             {projects[tabIndex].tasks &&
                                 projects[tabIndex].tasks
-                                    .filter(
+                                    ?.filter(
                                         (task) => task.status === "completed"
                                     )
                                     .map((task) => (
                                         <TaskCard
-                                            key={task}
+                                            key={task.name}
                                             task={task}
                                             project={projects[tabIndex]}
                                         />
