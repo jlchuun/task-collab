@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../../Modal.module.scss";
 import { addUserSchema } from "../../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { Project } from "../../Home";
 import UserItem from "./UserItem";
+import { AccountContext } from "../../../AccountContext";
 
 type FormProps = {
     email: string;
@@ -23,6 +24,7 @@ type FormProps = {
 const ManageUsersModal = ({ project }: { project: Project }) => {
     const [open, setOpen] = useState(false);
     const [error, setError] = useState("");
+    const { currentUser } = useContext(AccountContext);
     const toggleModal = () => {
         setOpen(!open);
         setError("");
@@ -57,9 +59,16 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
 
         // add project to added user doc
         await querySnapshot.forEach((doc) => {
+            // check if user already added in project
+            if (project.users?.includes(doc.data().email)) {
+                setError("User already added");
+                reset();
+                return;
+            }
             updateDoc(doc.ref, {
                 projects: arrayUnion(project.id),
             });
+            toggleModal();
         });
 
         // add user to projects doc
@@ -68,9 +77,7 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
             users: arrayUnion(values.email),
         });
         reset();
-        toggleModal();
     };
-    console.log(project.users);
     return (
         <div className={styles.addTaskContainer}>
             <button className={styles.btn} onClick={toggleModal}>
@@ -120,7 +127,7 @@ const ManageUsersModal = ({ project }: { project: Project }) => {
                             <ul>
                                 {project.users &&
                                     project.users.map((user) => (
-                                        <UserItem user={user} />
+                                        <UserItem key={user} user={user} />
                                     ))}
                             </ul>
                         </div>

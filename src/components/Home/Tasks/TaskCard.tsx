@@ -6,7 +6,6 @@ import { db } from "../../../firebase";
 import { Task } from "./Tasks";
 
 const TaskCard = ({ task, project }: { task: Task; project: Project }) => {
-    console.log(task.dueDate);
     const toggleStatus = async () => {
         const newStatus = task.status === "ongoing" ? "completed" : "ongoing";
         const projectRef = doc(db, "projects", project.id);

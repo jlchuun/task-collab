@@ -27,11 +27,13 @@ const AddTaskModal = ({ project }: { project: Project }) => {
 
     const toggleModal = () => setOpen(!open);
 
-    const addTask = async (values: Task): Promise<void> => {
+    const addTask = async (values: {
+        name: string;
+        dueDate: string;
+    }): Promise<void> => {
         reset();
         toggleModal();
         if (currentUser) {
-            console.log(values.dueDate);
             const projectRef = doc(db, "projects", project.id);
             await updateDoc(projectRef, {
                 tasks: arrayUnion({
