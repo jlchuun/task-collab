@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styles from "../../Modal.module.scss";
 import { addUserSchema } from "../../../../validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
