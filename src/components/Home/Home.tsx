@@ -6,6 +6,10 @@ import Tasks from "./Tasks/Tasks";
 import { useState } from "react";
 import { Task } from "./Tasks/Tasks";
 
+import { getDocs, collection } from "firebase/firestore";
+
+import { db } from "../../firebase";
+
 export type Project = {
     id: string;
     title: string;
