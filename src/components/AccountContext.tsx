@@ -11,7 +11,7 @@ export const AccountContext = createContext<AccountContextProps>({
     currentUser: null,
 });
 
-const UserContext = ({ children }) => {
+const UserContext = ({ children }: { children: any }) => {
     const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
     const navigate = useNavigate();
 
