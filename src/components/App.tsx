@@ -1,16 +1,16 @@
 import styles from "./App.module.scss";
 import Views from "./Views";
 import UserContext from "./AccountContext";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 const App = () => {
     return (
         <div className={styles.container}>
-            <BrowserRouter>
+            <HashRouter>
                 <UserContext>
                     <Views />
                 </UserContext>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 };
