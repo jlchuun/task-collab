@@ -35,6 +35,7 @@ const DeleteModal = ({ project }: { project: Project }) => {
                 projects: arrayRemove(project.id),
             });
         });
+        toggleModal();
     };
     return (
         <div className={styles.deleteProjectContainer}>
