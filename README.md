@@ -1,9 +1,9 @@
 # task-collab manager
 
-Task management system with realtime updates for task updates. Daily email reminder for
-due/overdue tasks.
+Task management system with realtime updates for task updates. Daily email reminder for due/overdue tasks.
 
 **Full website:** https://task-collab-95adf.firebaseapp.com/
+![taskCollab](https://user-images.githubusercontent.com/44554795/234475186-d8c3866c-dd2e-4535-8f15-8f6ac9244190.PNG)
 
 ## Why?
 
@@ -24,11 +24,12 @@ React along with SCSS modules allowed creation of a maintable and modularized ap
 ## Usage:
 
 As a task management system some of the main features are:
-
 -   login/register authentication
--   realtime user management
 -   owner authorization for users/project management
+![ownerAuth](https://user-images.githubusercontent.com/44554795/234477177-c56a9261-90a2-4ae9-bc50-e54d95b6f01c.gif)
 -   realtime task updates for status/add/deletion
+![tasks](https://user-images.githubusercontent.com/44554795/234476134-bca38104-badf-4f9c-9783-118c02ecadf4.gif)
+
 
 ## Contact
 
